@@ -247,6 +247,30 @@
   box-shadow: 0 4px 14px rgba(74,140,255,.6);
   transform: translateY(-2px);
 }
+/* Odtwarzacz radia na dole strony */
+.radio-player-box{
+  display: none;              /* startowo ukryty */
+  margin-top: 24px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(10, 26, 56, 0.95);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.radio-player-title{
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.98rem;
+}
+
+.radio-player-title span{
+  opacity: .9;
+}
+
+.radio-player-box audio{
+  width: 100%;
+}
 
     
   </style>
@@ -488,20 +512,27 @@
 </div>
 
 
-<!-- RADIO: lista przycisków jeden pod drugim -->
+<!-- RADIO: przyciski odtwarzające stacje -->
 <div class="tiles-links" id="tiles-radio">
-  <a class="link-btn" href="https://radiomaryja.pl/sluchaj/">
+  <button class="link-btn" type="button"
+          onclick="playRadio('Radio Maryja — słuchaj na żywo',
+                            'https://radiomaryja.fastcast4u.com/');">
     📻 Radio Maryja — słuchaj na żywo
-  </a>
+  </button>
 
-  <a class="link-btn" href="https://radiojasnagora.pl">
+  <button class="link-btn" type="button"
+          onclick="playRadio('Radio Jasna Góra — transmisje z Sanktuarium',
+                            'https://stream3.polskieradio.pl:8906/');">
     📻 Radio Jasna Góra — transmisje z Sanktuarium
-  </a>
+  </button>
 
-  <a class="link-btn" href="https://radioniepokalanow.pl/sluchaj/">
+  <button class="link-btn" type="button"
+          onclick="playRadio('Radio Niepokalanów — św. Maksymilian',
+                            'https://s3.slotex.pl:7218/;stream.mp3');">
     📻 Radio Niepokalanów — św. Maksymilian
-  </a>
+  </button>
 </div>
+
 
 
     <!-- Kafelki: Apki -->
@@ -539,6 +570,14 @@
       <button class="nav-btn" type="button" id="btn-linki">Linki</button>
       <button class="nav-btn" type="button" id="btn-radio">Radio</button>
       <button class="nav-btn" type="button" id="btn-apki">Apki</button>
+    </div>
+    <!-- Odtwarzacz radia -->
+    <div class="radio-player-box" id="radio-player-box">
+      <div class="radio-player-title">
+        🎧 Odtwarzacz radia:
+        <span id="radio-now">nic jeszcze nie gra</span>
+      </div>
+      <audio id="player" controls></audio>
     </div>
 
     
@@ -762,6 +801,23 @@
       location.hash = '';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+// --- ODTWARZACZ RADIOWY ---
+function playRadio(title, url) {
+  const box    = document.getElementById('radio-player-box');
+  const nowEl  = document.getElementById('radio-now');
+  const player = document.getElementById('player');
+
+  nowEl.textContent = title;
+  player.src = url;
+  box.style.display = 'block';
+
+  player.play().catch(() => {
+    // gdyby przeglądarka zablokowała auto-odtwarzanie
+  });
+
+  // przewinięcie do playera, żeby użytkownik widział co gra
+  box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
 
     
 </script>    
