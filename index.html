@@ -218,6 +218,35 @@
   margin-bottom: 24px;
   grid-template-columns: repeat(3, minmax(80px, 1fr));
 }
+/* Lista przycisków w sekcji LINKI */
+.tiles-links{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.link-btn{
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  background: rgba(12, 30, 60, 0.9);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.98rem;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,.35);
+  transition: all .25s ease;
+}
+
+.link-btn:hover{
+  background: var(--accent);
+  box-shadow: 0 4px 14px rgba(74,140,255,.6);
+  transform: translateY(-2px);
+}
 
     
   </style>
@@ -419,25 +448,43 @@
       </div>
     </div>
 
-    <!-- Kafelki: Linki -->
-    <div class="tiles" id="tiles-linki">
-      <div class="card">
-        <h3>GitHub • Droga Wiary</h3>
-        <p>Oficjalne repozytorium wszystkich projektów Drogi Wiary.</p>
-        <a class="go" href="https://github.com/drogawiary" target="_blank">Otwórz</a>
-      </div>
+    <!-- LINKI: lista przycisków jeden pod drugim -->
+    <div class="tiles-links" id="tiles-linki">
+      <a class="link-btn" href="https://www.biblia.pl/" target="_blank" rel="noopener noreferrer">
+        Biblia online
+      </a>
 
-      <div class="card">
-        <h3>Znaki Maryi</h3>
-        <p>Pełna książka online z objawieniami Maryjnymi.</p>
-        <a class="go" href="https://drogawiary.github.io/Znaki-Maryi/" target="_blank">Otwórz</a>
-      </div>
+      <a class="link-btn" href="https://www.vaticannews.va/pl.html" target="_blank" rel="noopener noreferrer">
+        Vatican News
+      </a>
 
-      <div class="card">
-        <h3>Nowenna</h3>
-        <p>Interaktywna nowenna: dzień po dniu, z zapamiętywaniem postępu.</p>
-        <a class="go" href="https://drogawiary.github.io/Nowenna_RW/" target="_blank">Otwórz</a>
-      </div>
+      <a class="link-btn" href="https://www.youtube.com/watch?v=EEM7a3mHMR4" target="_blank" rel="noopener noreferrer">
+        Vatican online – transmisja na żywo (YouTube)
+      </a>
+
+      <a class="link-btn" href="https://www.youtube.com/watch?v=yMxD3gdeXmk" target="_blank" rel="noopener noreferrer">
+        Oficjalny kanał Jasnej Góry (YouTube)
+      </a>
+
+      <a class="link-btn" href="https://www.youtube.com/@sw.faustyna" target="_blank" rel="noopener noreferrer">
+        Sanktuarium w Łagiewnikach – św. Faustyna (YouTube)
+      </a>
+
+      <a class="link-btn" href="https://majstered.github.io/M/" target="_blank" rel="noopener noreferrer">
+        „Zdrowaś Maryjo” – projekt Droga Wiary
+      </a>
+
+      <a class="link-btn" href="https://www.youtube.com/watch?v=ESNa1vdHcYY" target="_blank" rel="noopener noreferrer">
+        Lourdes online – transmisja z sanktuarium (YouTube)
+      </a>
+
+      <a class="link-btn" href="https://www.gaudemaria.org/category/badania/mariologia/" target="_blank" rel="noopener noreferrer">
+        Gaude Maria – mariologia
+      </a>
+
+      <a class="link-btn" href="https://pompejanska.krolowa.pl/" target="_blank" rel="noopener noreferrer">
+        Pompejańska Królowa Różańca Świętego
+      </a>
     </div>
 
     <!-- Kafelki: Radio -->
@@ -609,9 +656,10 @@
     btnLinki.addEventListener('click', () => {
       clearAll();
       setActive(null);
-      tilesLinki.style.display = 'grid';
+      tilesLinki.style.display = 'block';   // ⬅ tu zmiana
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
 
     btnRadio.addEventListener('click', () => {
       clearAll();
