@@ -688,20 +688,22 @@
     btnKsiazki.addEventListener('click', () => { showSection('ksiazki', btnKsiazki); location.hash = '#ksiazki'; });
 
     // Dolne przyciski: Linki / Radio / Apki
-    btnLinki.addEventListener('click', () => {
-      clearAll();
-      setActive(null);
-      tilesLinki.style.display = 'block';   // ⬅ tu zmiana
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+btnLinki.addEventListener('click', () => {
+  clearAll();
+  setActive(null);
+  tilesLinki.style.display = 'flex';   // ⬅ flex, żeby zadziałał gap
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 
-    btnRadio.addEventListener('click', () => {
-      clearAll();
-      setActive(null);
-      tilesRadio.style.display = 'grid';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+
+btnRadio.addEventListener('click', () => {
+  clearAll();
+  setActive(null);
+  tilesRadio.style.display = 'flex';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
 
     btnApki.addEventListener('click', () => {
       clearAll();
