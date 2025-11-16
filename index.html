@@ -653,14 +653,25 @@
       return null;
     };
 
-    function clearAll() {
-      [
-        tilesWiara, tilesArty, tilesModlitwy, tilesKsiazki,
-        tilesLinki, tilesRadio, tilesApki
-      ].forEach(el => el && (el.style.display = 'none'));
-      intro.style.display = 'none';
-      reader.style.display = 'none';
-    }
+function clearAll() {
+  [
+    tilesWiara, tilesArty, tilesModlitwy, tilesKsiazki,
+    tilesLinki, tilesRadio, tilesApki
+  ].forEach(el => el && (el.style.display = 'none'));
+
+  intro.style.display = 'none';
+  reader.style.display = 'none';
+
+  // ➜ schowaj odtwarzacz radia i zatrzymaj granie
+  const box    = document.getElementById('radio-player-box');
+  const player = document.getElementById('player');
+  if (box && player) {
+    player.pause();
+    player.currentTime = 0;
+    box.style.display = 'none';
+  }
+}
+
 
     function setActive(btn) {
       buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
