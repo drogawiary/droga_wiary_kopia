@@ -578,6 +578,9 @@
         <span id="radio-now">nic jeszcze nie gra</span>
       </div>
       <audio id="player" controls></audio>
+      <button type="button" class="nav-btn" onclick="stopRadio()">
+  ⏹ Zatrzymaj radio
+</button>
     </div>
 
     
@@ -819,6 +822,15 @@ function playRadio(title, url) {
 
   // przewinięcie do playera, żeby użytkownik widział co gra
   box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function stopRadio() {
+  const box    = document.getElementById('radio-player-box');
+  const player = document.getElementById('player');
+
+  player.pause();
+  player.currentTime = 0;
+  player.src = "";
+  box.style.display = 'none';
 }
 
     
