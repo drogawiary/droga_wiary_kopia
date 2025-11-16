@@ -394,7 +394,7 @@
       </div>
     </div>
 
-<!-- Kafelki: Książki -->
+    <!-- Kafelki: Książki -->
     <div class="tiles" id="tiles-ksiazki">
       <div class="card">
         <h3>Znaki Maryi</h3>
@@ -416,6 +416,69 @@
         <p>Główne kompendium duchowe — projekt łączący wszystkie rozważania w jedną całość.</p>
         <div class="tags"><span class="tag">książka</span><span class="tag">kompendium</span></div>
         <a class="go" href="#">Czytaj</a>
+      </div>
+    </div>
+
+    <!-- Kafelki: Linki -->
+    <div class="tiles" id="tiles-linki">
+      <div class="card">
+        <h3>GitHub • Droga Wiary</h3>
+        <p>Oficjalne repozytorium wszystkich projektów Drogi Wiary.</p>
+        <a class="go" href="https://github.com/drogawiary" target="_blank">Otwórz</a>
+      </div>
+
+      <div class="card">
+        <h3>Znaki Maryi</h3>
+        <p>Pełna książka online z objawieniami Maryjnymi.</p>
+        <a class="go" href="https://drogawiary.github.io/Znaki-Maryi/" target="_blank">Otwórz</a>
+      </div>
+
+      <div class="card">
+        <h3>Nowenna</h3>
+        <p>Interaktywna nowenna: dzień po dniu, z zapamiętywaniem postępu.</p>
+        <a class="go" href="https://drogawiary.github.io/Nowenna_RW/" target="_blank">Otwórz</a>
+      </div>
+    </div>
+
+    <!-- Kafelki: Radio -->
+    <div class="tiles" id="tiles-radio">
+      <div class="card">
+        <h3>Radio Maryja</h3>
+        <p>Transmisja na żywo — modlitwa, katecheza i duchowe audycje.</p>
+        <a class="go" href="https://radiomaryja.pl/sluchaj/" target="_blank">Słuchaj</a>
+      </div>
+
+      <div class="card">
+        <h3>Radio Jasna Góra</h3>
+        <p>Transmisje z Sanktuarium, modlitwy i rozważania.</p>
+        <a class="go" href="https://radiojasnagora.pl" target="_blank">Słuchaj</a>
+      </div>
+
+      <div class="card">
+        <h3>Radio Niepokalanów</h3>
+        <p>Radio św. Maksymiliana — formacja, modlitwa, muzyka chrześcijańska.</p>
+        <a class="go" href="https://radioniepokalanow.pl/sluchaj/" target="_blank">Słuchaj</a>
+      </div>
+    </div>
+
+    <!-- Kafelki: Apki -->
+    <div class="tiles" id="tiles-apki">
+      <div class="card">
+        <h3>Różaniec Interaktywny</h3>
+        <p>Piękna aplikacja do różańca z trybem nocnym i zapisem postępu.</p>
+        <a class="go" href="https://drogawiary.github.io/RC/" target="_blank">Uruchom</a>
+      </div>
+
+      <div class="card">
+        <h3>Nowenna RW</h3>
+        <p>Najbardziej dopracowana wersja Twojej nowenny — mobilna i szybka.</p>
+        <a class="go" href="https://drogawiary.github.io/Nowenna_RW/" target="_blank">Uruchom</a>
+      </div>
+
+      <div class="card">
+        <h3>Kalendarz Katolicki</h3>
+        <p>Kalendarz liturgiczny z czytaniami, świętymi i „Myślą Dnia”.</p>
+        <a class="go" href="https://drogawiary.github.io/Kalendarz" target="_blank">Uruchom</a>
       </div>
     </div>
 
@@ -452,10 +515,20 @@
     const btnArty = document.getElementById('btn-arty');
     const btnModlitwy = document.getElementById('btn-modlitwy');
     const btnKsiazki = document.getElementById('btn-ksiazki');
+
+    const btnLinki = document.getElementById('btn-linki');
+    const btnRadio = document.getElementById('btn-radio');
+    const btnApki  = document.getElementById('btn-apki');
+
     const tilesWiara = document.getElementById('tiles-wiara');
     const tilesArty = document.getElementById('tiles-arty');
     const tilesModlitwy = document.getElementById('tiles-modlitwy');
     const tilesKsiazki = document.getElementById('tiles-ksiazki');
+
+    const tilesLinki = document.getElementById('tiles-linki');
+    const tilesRadio = document.getElementById('tiles-radio');
+    const tilesApki  = document.getElementById('tiles-apki');
+
     const buttons = document.querySelectorAll('.nav-btn');
 
     const reader = document.getElementById('reader');
@@ -492,7 +565,10 @@
     };
 
     function clearAll() {
-      [tilesWiara, tilesArty, tilesModlitwy, tilesKsiazki].forEach(el => el && (el.style.display = 'none'));
+      [
+        tilesWiara, tilesArty, tilesModlitwy, tilesKsiazki,
+        tilesLinki, tilesRadio, tilesApki
+      ].forEach(el => el && (el.style.display = 'none'));
       intro.style.display = 'none';
       reader.style.display = 'none';
     }
@@ -528,6 +604,28 @@
     btnArty.addEventListener('click',    () => { showSection('arty', btnArty); location.hash = '#arty'; });
     btnModlitwy.addEventListener('click',() => { showSection('modlitwy', btnModlitwy); location.hash = '#modlitwy'; });
     btnKsiazki.addEventListener('click', () => { showSection('ksiazki', btnKsiazki); location.hash = '#ksiazki'; });
+
+    // Dolne przyciski: Linki / Radio / Apki
+    btnLinki.addEventListener('click', () => {
+      clearAll();
+      setActive(null);
+      tilesLinki.style.display = 'grid';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    btnRadio.addEventListener('click', () => {
+      clearAll();
+      setActive(null);
+      tilesRadio.style.display = 'grid';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    btnApki.addEventListener('click', () => {
+      clearAll();
+      setActive(null);
+      tilesApki.style.display = 'grid';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     // --- Router hash ---
     async function showArticle(section, name) {
@@ -611,14 +709,15 @@
       const section = h.split('/')[0] || 'wiara';
       location.hash = '#' + section;
     });
-// Klik w nagłówek "Droga wiary" — powrót do strony głównej
-document.getElementById('homeLink').addEventListener('click', () => { 
-  setActive(null);
-  clearAll();
-  intro.style.display = 'block';
-  location.hash = '';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+
+    // Klik w nagłówek "Droga wiary" — powrót do strony głównej
+    document.getElementById('homeLink').addEventListener('click', () => { 
+      setActive(null);
+      clearAll();
+      intro.style.display = 'block';
+      location.hash = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     
 </script>    
